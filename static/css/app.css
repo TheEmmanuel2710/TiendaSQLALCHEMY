@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Alkatra&display=swap');
+
+header{
+    text-align: center;
+    color: darkgreen;
+    background-color: lightgray;
+    font-family: 'Alkatra', cursive;
+}
+nav{
+    background-color: black;
+    color: aqua;
+    font-family: 'Alkatra', cursive;
+}
+#icono{
+    z-index:987987;
+    position: absolute;
+    top: 8px;
+    right: 300px;
+    width: 20%;
+    height: 380px;
+    overflow: auto;
+}
+#Editar{
+    margin: 0% auto;
+}
+#Agregar{
+    margin: 0% auto;
+}
+#AgregarC{
+    margin: 0% auto;
+}
+section {
+    width: 100%;
+    min-height: 400px;
+    font-family: 'Alkatra', cursive;
+}
+footer {
+    width: 100%;
+    background-color: lightgray;
+    color: darkgreen;
+    font-family: 'Alkatra', cursive;
+}
+/* Estilos para pantallas con ancho máximo de 768px */
+@media (max-width: 768px) {
+    header {
+        text-align: center;
+        color: darkgreen;
+        background-color:  lightgray;
+    }
+    nav {
+        background-color: black;
+        color: darkgreen;
+    }
+    #icono {
+        left: 70%;
+    }
+    section{
+        right: 0;
+        width: 280px;
+    }
+}

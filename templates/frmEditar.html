@@ -1,0 +1,65 @@
+{% extends 'index.html' %}
+{% block encabezado %}
+{% include "encabezado.html" %}
+{% endblock %}
+{% block contenido %}
+<div class="w-50" id="Editar">
+    <form action="/actualizarProducto" method="post" enctype="multipart/form-data" class="was-validated border-1">
+        <div>
+            <h1 class="text-center text-bg-dark">Editar Producto
+            </h1>
+        </div>
+        <div class="mb-3">
+            <label for="txtCodigo" class="fw-bold">Codigo:</label>
+            <input type="text" name="txtCodigo" id="txtCodigo" class="form-control" value="{{producto.proCodigo}}"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="txtNombre" class="fw-bold">Nombre:</label>
+            <input type="text" name="txtNombre" id="txtNombre" class="form-control" value="{{producto.proNombre}}"
+                required>
+        </div>
+        <div class="mb-3">
+            <label for="txtPrecio" class="fw-bold">Precio:</label>
+            <input type="text" name="txtPrecio" id="txtPrecio" class="form-control" value="{{producto.proPrecio}}"
+                required>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="file" name="fileFoto" id="fileFoto" class="form-control redondeado" accept=".jpg">
+            <label for="fileFoto" class="fw-bold" style="color: black;">Foto (jpg):</label>
+        </div>
+        <div class="mb-3">
+            <label for="cbCategoria" class="fw-bold">Categoria:</label>
+            <select name="cbCategoria" id="cbCategoria" class="form-select" required>
+                {%for categoria in listaCategoria %}
+                {%if categoria.idCategoria==producto.proCategoria %}
+                <option value="{{categoria.idCategoria}}" class="fw-bold" selected>{{categoria.catNombre}}</option>
+                {%else %}
+                <option value="{{categoria.idCategoria}}" class="fw-bold">{{categoria.catNombre}}</option>
+                {%endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <a><button class="btn btn-dark fw-bold" style="color: white;">Editar</button></a>
+
+            <button class="btn btn-dark fw-bold" style="color: white; width: 90px;">Cancelar</button>
+        </div>
+        <input type="hidden" name="idProducto" id="idProducto" value="{{producto.idProducto}}">
+    </form>
+</div>
+{% if mensaje %}
+<script>
+    Swal.fire("Actualizar Producto", '{{mensaje}}', "warning")
+
+</script>
+{%endif %}
+<script>
+    document.getElementById("cbCategoria").value = "{{producto['categoria']}}"
+</script>
+{% endblock %}
+
+{% block piePagina %}
+{% include "piePagina.html" %}
+{% endblock %}

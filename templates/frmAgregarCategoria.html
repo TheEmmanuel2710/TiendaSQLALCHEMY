@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block encabezado %}
+{% include "encabezado.html" %}
+{% endblock %}
+{% block contenido %}
+<div class="w-50" id="AgregarC">
+    <br>
+    <form action="/agregarCategoria" method="post" enctype="multipart/form-data" class="was-validated border-1">
+        <div>
+            <h1 class="text-center text-bg-dark">Registrar Categoria        
+            </h1>
+        </div>
+        <div class="mb-3">
+            <label for="txtNombre" class="fw-bold">Nombre:</label>
+            <input type="text" name="txtNombre" id="txtNombre" class="form-control" required>
+        </div>
+        <div>
+            <button class="btn btn-dark fw-bold" style="color: white;">Agregar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block piePagina %}
+{% include "piePagina.html" %}
+{% endblock %}

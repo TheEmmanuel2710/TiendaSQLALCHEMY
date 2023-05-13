@@ -1,0 +1,72 @@
+{%extends "index.html" %}
+{% block encabezado %}
+{%include "encabezado.html" %}
+{% endblock %}
+{% block contenido %}
+<div>
+<section>
+    <br>
+    <div>
+        <a href="/vistaProducto"><button class="btn btn-dark fw-bold" style="color: white;">Agregar</button></a>
+    </div>
+    <h3 style="text-align: center;color: darkgreen;" class="fw-bold">GESTIONAR PRODUCTOS</h3>
+    <br>
+    <br>
+    <div class="table-responsive">
+        <table class="table" id="tblTienda">
+            <thead class="bg-success text-white text-center">
+                <tr>
+                    <th class="text-center">Codigo</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Precio</th>
+                    <th class="text-center">Categoria</th>
+                    <th class="text-center">Foto</th>
+                    <th class="text-center">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for producto in listaProductos %}
+                <tr>
+                    <td class="text-center">{{producto.proCodigo}}</td>
+                    <td class="text-center">{{producto.proNombre}}</td>
+                    <td class="text-end">${{producto.proPrecio}}</td>
+                    <td class="text-center">{{producto.categoria.catNombre}}</td>
+                    <td class="text-center">
+                        <img src="../static/imagenes/{{producto.idProducto}}.jpg" width="50" height="50">
+                    </td>
+                    <td class="text-center" style="font-size: 4vh;" id="iconos">
+                        <a href="/consultarProducto/{{producto.idProducto}}">
+                            <i class="fa fa-edit text-warning" title="Editar"></i>
+                        </a>
+                        <i onclick="abrirModalEliminar('{{producto.idProducto}}')" class="fa fa-trash text-danger"
+                            title="Eliminar"></i>
+                    </td>
+                </tr>
+                {%endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+</section>
+<script>
+    function abrirModalEliminar(idProducto) {
+        Swal.fire({
+            title: 'Eliminar Producto',
+            text: "¿Esta seguro de eliminar?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'No',
+            confirmButtonText: 'Si'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.href = "/eliminar/" + idProducto
+            }
+        })
+    }
+</script>
+{% endblock %}
+{% block piePagina %}
+{% include "piePagina.html" %}
+{% endblock %}
